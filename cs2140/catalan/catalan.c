@@ -197,6 +197,9 @@ int main(int argc, char**argv)
             case 1:
                 test_1();
                 break;
+            case 2:
+                test_2();
+                break;
             default:
                 printf("\tInvalid test requested.\n");
                 return -1;
