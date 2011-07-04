@@ -203,6 +203,27 @@ void test_3(void)
 }
 
 
+// ----------------------------------------------------------------------------
+// Prints out the Catalan numbers C_0 to C_20
+//
+void test_4(void)
+{
+    int i;
+    const int total = 20;
+    catalan_t *ans;
+
+    ans = (catalan_t *) malloc(total * sizeof(catalan_t));
+
+    i = 0;
+    while ( i < total ) {
+        catalan(i, ans, total);
+        printc("C_", i, ans[i]);
+        i++;
+    }
+    printc("So, C_", total, ans[total]);
+}
+
+
 int main(int argc, char**argv)
 {
     int i, test_number;
@@ -224,6 +245,9 @@ int main(int argc, char**argv)
                 break;
             case 3:
                 test_3();
+                break;
+            case 4:
+                test_4();
                 break;
             default:
                 printf("\tInvalid test requested.\n");
