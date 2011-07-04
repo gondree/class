@@ -275,6 +275,27 @@ void test_6(void)
 }
 
 
+// ----------------------------------------------------------------------------
+// Prints C_20 and (C_20)+1
+//
+void test_7(void)
+{
+    int i;
+    int const total = 20;
+    catalan_work_t ans;
+    catalan_t *ptr;
+
+    ptr = (catalan_t *) malloc(5 * sizeof(catalan_t));
+    
+    // here, I want to make use of a pre-malloc'd pointer
+    ans.buf = ptr;
+    ans.len = 5;
+    catalan_fill(total, &ans);
+    printc("Catalan number C_", ans.len-1, ans.buf[ans.len-1]);
+    free(ptr);
+}
+
+
 int main(int argc, char**argv)
 {
     int i, test_number;
@@ -305,6 +326,9 @@ int main(int argc, char**argv)
                 break;
             case 6:
                 test_6();
+                break;
+            case 7:
+                test_7();
                 break;
             default:
                 printf("\tInvalid test requested.\n");
