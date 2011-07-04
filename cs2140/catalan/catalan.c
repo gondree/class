@@ -305,6 +305,31 @@ void test_7(void)
 }
 
 
+// ----------------------------------------------------------------------------
+// Prints C_20 and C_40
+//
+void test_8(void)
+{
+    int total = 20;
+    catalan_work_t ans1, ans2;
+    catalan_t *ptr;
+
+    ans1.buf = NULL;
+    ans1.len = 0;
+
+    // no need to alloc - catalan_fill will do it for us
+    catalan_fill(total, &ans1);
+    printc("Catalan number C_", ans1.len-1, ans1.buf[ans1.len-1]);
+
+    // lets re-use the buffer from before
+    ans2.buf = ptr = ans1.buf;
+    ans2.len = ans1.len;
+    catalan_fill(total*2, &ans2);
+    printc("Catalan number C_", ans2.len-1, ans2.buf[ans2.len-1]);
+    free(ptr);
+}
+
+
 int main(int argc, char**argv)
 {
     int i, test_number;
@@ -338,6 +363,9 @@ int main(int argc, char**argv)
                 break;
             case 7:
                 test_7();
+                break;
+            case 8:
+                test_8();
                 break;
             default:
                 printf("\tInvalid test requested.\n");
