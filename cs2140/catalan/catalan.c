@@ -181,6 +181,28 @@ void test_2(void)
 }
 
 
+// ----------------------------------------------------------------------------
+// Prints C_20, the 21st Catalan number
+//
+void test_3(void)
+{
+    const int total = 20;
+    catalan_t *i;
+    catalan_work_t *ans;
+    
+    ans = (catalan_work_t *) malloc(sizeof(catalan_work_t));
+    i = (catalan_t *) malloc(total*sizeof(catalan_t));
+    ans->buf = i;
+    free(i);
+    ans->len = total;
+
+    catalan_fill(total, ans);
+    printc("Catalan number C_", ans->len-1, ans->buf[ans->len-1]);
+
+    free(ans);
+}
+
+
 int main(int argc, char**argv)
 {
     int i, test_number;
@@ -199,6 +221,9 @@ int main(int argc, char**argv)
                 break;
             case 2:
                 test_2();
+                break;
+            case 3:
+                test_3();
                 break;
             default:
                 printf("\tInvalid test requested.\n");
