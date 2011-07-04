@@ -293,6 +293,15 @@ void test_7(void)
     catalan_fill(total, &ans);
     printc("Catalan number C_", ans.len-1, ans.buf[ans.len-1]);
     free(ptr);
+
+    // another time, showing catalan_fill doesn't need a pre-malloc'd pointer
+    ans.buf = NULL;
+    ans.len = 0;
+    catalan_fill(total, &ans);
+    for(i = 0; i < ans.len; i++) {
+        ans.buf[i] += 1;
+    }
+    printc("            1+ C_", ans.len-1, ans.buf[ans.len-1]);
 }
 
 
