@@ -224,6 +224,26 @@ void test_4(void)
 }
 
 
+// ----------------------------------------------------------------------------
+// Outputs two random values, C_i, for some i between 5 and 20
+//
+void test_5(void)
+{
+    int total;
+    catalan_t *ans = NULL;
+
+    total =  5 + rand() % 15;
+    ans = catalan_answers(total);
+    printc("First value: Catalan number C_", total, ans[total]);
+
+    total = 5 + rand() % 15;
+    ans = catalan_answers(total);
+    printc("Second value: Catalan number C_", total, ans[total]);
+
+    free(ans);
+}
+
+
 int main(int argc, char**argv)
 {
     int i, test_number;
@@ -248,6 +268,9 @@ int main(int argc, char**argv)
                 break;
             case 4:
                 test_4();
+                break;
+            case 5:
+                test_5();
                 break;
             default:
                 printf("\tInvalid test requested.\n");
