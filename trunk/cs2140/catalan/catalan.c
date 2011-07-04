@@ -164,6 +164,21 @@ void test_1(void)
 }
 
 
+// ----------------------------------------------------------------------------
+// Prints C_20, the 21st Catalan number
+//
+void test_2(void)
+{
+    catalan_work_t ans;
+    const int total = 20;
+    
+    if (catalan_fill(total, &ans)) {
+        exit(-1);
+    }
+    printc("Catalan number C_", ans.len-1, ans.buf[ans.len-1]);
+
+    free(ans.buf);
+}
 
 
 int main(int argc, char**argv)
