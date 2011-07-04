@@ -212,7 +212,7 @@ void test_4(void)
     const int total = 20;
     catalan_t *ans;
 
-    ans = (catalan_t *) malloc(total * sizeof(catalan_t));
+    ans = (catalan_t *) malloc(total+1 * sizeof(catalan_t));
 
     i = 0;
     while ( i < total ) {
