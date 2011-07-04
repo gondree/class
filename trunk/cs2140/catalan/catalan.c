@@ -244,6 +244,37 @@ void test_5(void)
 }
 
 
+// ----------------------------------------------------------------------------
+// Prints C_20 and (C_20) - 1
+//
+void test_6(void)
+{
+    int i;
+    const int total = 20;
+    catalan_work_t ans, *ptr;
+
+    // prepare room for the answer
+    ptr = (catalan_work_t *) malloc(sizeof(catalan_work_t));
+    ans.buf = (catalan_t *) malloc((total+1) * sizeof(catalan_t));
+    ans.len = total+1;
+
+    // perform calculations
+    catalan_fill(total, &ans);
+
+    // make a duplicate of ans, and then adjust the copy
+    memcpy(ptr, &ans, sizeof(catalan_work_t));
+    for(i = 0; i < ptr->len; i++) {
+        ptr->buf[i] -= 1;
+    }
+
+    printc("Catalan number C_", ans.len-1, ans.buf[ans.len-1]);
+    free(ans.buf);
+
+    printc("     and, -1 + C_", ptr->len-1, ptr->buf[ptr->len-1]);
+    free(ptr);
+}
+
+
 int main(int argc, char**argv)
 {
     int i, test_number;
@@ -271,6 +302,9 @@ int main(int argc, char**argv)
                 break;
             case 5:
                 test_5();
+                break;
+            case 6:
+                test_6();
                 break;
             default:
                 printf("\tInvalid test requested.\n");
