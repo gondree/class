@@ -1,0 +1,10 @@
+# This is a list of files to use as input
+  # Your program should support comments and trailing whitespace
+  # You do not need to support leading whitespaces
+
+Makefile         # your Makefile should be part of the list
+/usr/bin/stat
+/home
+/dev/sda1
+
+
