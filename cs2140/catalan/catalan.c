@@ -155,6 +155,8 @@ void test_1(void)
     catalan_t *ans;
 
     ans = (catalan_t *) malloc(total * sizeof(catalan_t));
+    if (!ans)
+        return;
     
     for (i = 0; i < total; i++) {
         catalan(i, ans, total);
@@ -191,7 +193,12 @@ void test_3(void)
     catalan_work_t *ans;
     
     ans = (catalan_work_t *) malloc(sizeof(catalan_work_t));
+    if (!ans)
+        return;
     i = (catalan_t *) malloc(total*sizeof(catalan_t));
+    if (!i)
+        return;
+ 
     ans->buf = i;
     free(i);
     ans->len = total;
@@ -213,6 +220,8 @@ void test_4(void)
     catalan_t *ans;
 
     ans = (catalan_t *) malloc(total+1 * sizeof(catalan_t));
+    if (!ans)
+        return;
 
     i = 0;
     while ( i < total ) {
@@ -255,14 +264,22 @@ void test_6(void)
 
     // prepare room for the answer
     ptr = (catalan_work_t *) malloc(sizeof(catalan_work_t));
+    if (!ptr)
+        return;
+
     ans.buf = (catalan_t *) malloc((total+1) * sizeof(catalan_t));
+    if (!ans.buf)
+        return;
+
     ans.len = total+1;
 
     // perform calculations
     catalan_fill(total, &ans);
 
-    // make a duplicate of ans, and then adjust the copy
+    // make a duplicate of ans
     memcpy(ptr, &ans, sizeof(catalan_work_t));
+    
+    // then adjust the copy
     for(i = 0; i < ptr->len; i++) {
         ptr->buf[i] -= 1;
     }
@@ -286,6 +303,8 @@ void test_7(void)
     catalan_t *ptr;
 
     ptr = (catalan_t *) malloc(5 * sizeof(catalan_t));
+    if (!ptr)
+        return;
     
     // here, I want to make use of a pre-malloc'd pointer
     ans.buf = ptr;
@@ -324,7 +343,7 @@ void test_8(void)
     // lets re-use the buffer from before
     ans2.buf = ptr = ans1.buf;
     ans2.len = ans1.len;
-    catalan_fill(total*2, &ans2);
+    catalan_fill(total+10, &ans2);
     printc("Catalan number C_", ans2.len-1, ans2.buf[ans2.len-1]);
     free(ptr);
 }
