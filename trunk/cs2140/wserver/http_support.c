@@ -10,6 +10,7 @@
 #include <ctype.h>
 #include <time.h>
 #include <stdint.h>
+#include <limits.h>
 #include "http_support.h"
 
 #define HTTP_TIME_FORMAT "%a, %d %b %Y %H:%M:%S GMT"
@@ -117,6 +118,7 @@ int http_get_request(FILE *stream, http_req *req)
             return -1;
         }
         strncpy(req->resource, ptr, len);
+        req->resource[len] = '\0'; // make sure its null terminated
 
         // HTTP-Version present?
         if (strstr(ptr, "HTTP/"))
@@ -247,25 +249,25 @@ int get_mime_type(char *filename, http_req *req)
     char *ext = strrchr(filename, '.');
     if (!ext)
         req->mime = NULL;
-    else if (strncmp(ext, ".html", 5) || strncmp(ext, ".htm", 4))
+    else if (!strncmp(ext, ".html", 5) || !strncmp(ext, ".htm", 4))
         req->mime = "text/html";
-    else if (strncmp(ext, ".jpg", 4) || strncmp(ext, ".jpeg", 5))
+    else if (!strncmp(ext, ".jpg", 4) || !strncmp(ext, ".jpeg", 5))
         req->mime = "image/jpeg";
-    else if (strncmp(ext, ".gif", 4))
+    else if (!strncmp(ext, ".gif", 4))
         req->mime = "image/gif";
-    else if (strncmp(ext, ".png", 4))
+    else if (!strncmp(ext, ".png", 4))
         req->mime = "image/png";
-    else if (strncmp(ext, ".css", 4))
+    else if (!strncmp(ext, ".css", 4))
         req->mime = "text/css";
-    else if (strncmp(ext, ".au", 4))
+    else if (!strncmp(ext, ".au", 4))
         req->mime = "audio/basic";
-    else if (strncmp(ext, ".wav", 4))
+    else if (!strncmp(ext, ".wav", 4))
         req->mime = "audio/wav";
-    else if (strncmp(ext, ".avi", 4))
+    else if (!strncmp(ext, ".avi", 4))
         req->mime = "video/x-msvideo";
-    else if (strncmp(ext, ".mpeg", 5) || strncmp(ext, ".mpg", 4))
+    else if (!strncmp(ext, ".mpeg", 5) || !strncmp(ext, ".mpg", 4))
         req->mime = "video/mpeg";
-    else if (strncmp(ext, ".mp3", 4))
+    else if (!strncmp(ext, ".mp3", 4))
         req->mime = "audio/mpeg";
     return 0;
 }
