@@ -23,8 +23,8 @@ struct cnode {
 //    ordered_add() can be used to manage a list of type cnode_t nodes
 //    such that adding a new node maintains their order. In
 //    particular, the new node will appear in a position based
-//    on the combinatorial sequence value, with smallest
-//    values appearing at the head of the list.
+//    on the cnode_t value, with smallest values appearing
+//    toward the head of the list.
 //
 //    If the input list is unordered, the behavior is undefined.
 //    Caller is resonsible for freeing the new node inserted

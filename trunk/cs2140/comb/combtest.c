@@ -12,7 +12,7 @@ extern int lucas_errno;
     ((a)->type == FIB) ? "FIB" : \
     ((a)->type == LUCAS) ? "LUCAS" : \
     ((a)->type == BELL) ? "BELL" : \
-    ((a)->type == LUCAS) ? "LUCAS" : "???"
+    ((a)->type == CATALAN) ? "CATALAN" : "???"
 
 #define COMBN 10
 
