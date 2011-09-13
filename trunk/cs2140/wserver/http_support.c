@@ -161,7 +161,7 @@ int http_response(FILE *stream, http_req *req)
     // *(General-Header | Response-Header | Entity-Header)
     // CRLF
     if (req->type == FULL) {
-        fprintf(stream, "HTTP/1.0 %d OK\r\n", req->status);
+        fprintf(stream, "HTTP/1.0 %d\r\n", req->status);
         fprintf(stream, "Server: CS2140 v1\r\n");
         fprintf(stream, "Date: %s GMT\r\n", timestr);
         // TODO: Content-Length header
@@ -190,6 +190,7 @@ int http_response(FILE *stream, http_req *req)
         fprintf(stream, "</H1>\n<P>");
         fprintf(stream, "The request could not be completed.");
         fprintf(stream, "</P>\n</BODY>\n</HTML>\n");
+        fflush(stream);
     }
     return 0;
 }

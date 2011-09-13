@@ -54,7 +54,7 @@ typedef struct {
     enum req_type type;      // request type
     enum req_method method;  // requested method
     int  status;             // response status
-    char *resource;          // resquested resource name
+    char *resource;          // requested resource name
     int resource_fd;         // fs associated with requested resource
     char *mime;              // mime type
 } http_req;

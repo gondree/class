@@ -12,11 +12,13 @@ BINS=wserver
 all: $(BINS)
 
 wserver: wserver.o http_support.o
+wserver.o: wserver.c http_support.h
+http_support.o: http_support.c
 
 $(BINS):
 	$(CC) $^ -o $@
 
-%.o: %.c
+%.o:
 	$(CC) $< -c $(CFLAGS) -o $@
 
 clean:
