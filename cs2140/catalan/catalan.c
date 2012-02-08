@@ -276,10 +276,10 @@ void test_6(void)
     // perform calculations
     catalan_fill(total, &ans);
 
-    // make a duplicate of ans
+    // make a complete duplicate of ans (i.e. a "deep copy" of ans)
     memcpy(ptr, &ans, sizeof(catalan_work_t));
     
-    // then adjust the copy
+    // then adjust only the copy
     for(i = 0; i < ptr->len; i++) {
         ptr->buf[i] -= 1;
     }
