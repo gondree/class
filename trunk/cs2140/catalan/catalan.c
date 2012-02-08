@@ -3,7 +3,9 @@
  *
  * Contains a few functions for doing dynamic programming problems
  * related to computing Catalan numbers. The program exercises our functions' 
- * logic in various ways.
+ * logic in various ways. Think of this as a set of "tests" for the 
+ * catalan-computing functions. The object isn't merely to output 
+ * the "right" number, but its to invoke the function in a particular way.
  * ----------------------------------------------------------------------------
 */
 
@@ -276,10 +278,10 @@ void test_6(void)
     // perform calculations
     catalan_fill(total, &ans);
 
-    // make a complete duplicate of ans (i.e. a "deep copy" of ans)
+    // make a complete duplicate (i.e. a "deep copy" of ans)
     memcpy(ptr, &ans, sizeof(catalan_work_t));
     
-    // then adjust only the copy
+    // now, adjust ONLY the copy
     for(i = 0; i < ptr->len; i++) {
         ptr->buf[i] -= 1;
     }
