@@ -31,7 +31,7 @@ typedef struct {
 // DESCRIPTION
 //   lucas() computes generalized Lucas sequence numbers.
 // INPUT
-//    gen - a pointer to generalized Lucas sequecne parameters
+//    gen - a pointer to generalized Lucas sequence parameters
 //    n - the sequence number of the Lucas number to compute
 // OUTPUT
 //    ans - a pointer to a variable of type comb_t, which
