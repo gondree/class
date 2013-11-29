@@ -10,5 +10,5 @@ fsinfo: fsinfo.c
 	@echo Creating $@ from $<
 
 clean:
-	rm -f *.o
+	rm -f fsinfo *.o
 
