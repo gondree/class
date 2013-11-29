@@ -1,12 +1,12 @@
+#include <errno.h>
 #include <bell.h>
 
 int bell_errno = 0;
 
 int _bell(int n1, int n2, comb_t *ans)
 {
-    int result = 0;
-	// missing logic
-    return result;
+    // missing logic
+    return 0;
 }
 
 

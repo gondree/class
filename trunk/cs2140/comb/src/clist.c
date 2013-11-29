@@ -4,9 +4,8 @@
 
 int ordered_add(int type, unsigned int pos, comb_t value, cnode_t **head)
 {
-    int result = 0;
-	// missing logic
-    return result;
+    // missing logic
+    return 0;
 }
 
 

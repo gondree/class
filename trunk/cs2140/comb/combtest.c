@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include <combinatorics.h>
 #include <lucas.h>
 #include <bell.h>
@@ -13,6 +14,9 @@ extern int lucas_errno;
     ((a)->type == LUCAS) ? "LUCAS" : \
     ((a)->type == BELL) ? "BELL" : \
     ((a)->type == CATALAN) ? "CATALAN" : "???"
+
+// a simple macro for printing things that look like errno values
+#define cerror(a, b) fprintf(stderr, "%s : %s\n", a, strerror(b))
 
 #define COMBN 10
 
@@ -33,20 +37,23 @@ int main(int argc, char *argv[], char *env[])
            " in the Fibonacci and Bell sequences\n\n ", argv[0], COMBN);
 
     for(i = 0; i < COMBN; i++) {
-        lucas(&info, i, &f);
-        if (lucas_errno) perror("lucas()");
-        ordered_add(FIB, i, f, &head);
+        if (lucas(&info, i, &f) != 0) {
+            cerror("lucas()", lucas_errno);
+        } else {
+            ordered_add(FIB, i, f, &head);
+        }
 
-        bell(i, &b);
-        if (bell_errno) perror("bell()");
-        ordered_add(BELL, i, b, &head);
+        if (bell(i, &b) != 0) {
+            cerror("bell()", bell_errno);
+        } else {
+            ordered_add(BELL, i, b, &head);
+        }
     }
     
     for(ptr = head; ptr != NULL; ptr = ptr->next) {
-        printf("%s \t Seq(%d) = %lld\n",
+        printf("%s \t Seq(%d) = %ld\n",
                comb_print(ptr), ptr->pos, ptr->value);
     }
-
     free_clist(head);
     return 0;
 }
