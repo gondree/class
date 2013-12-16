@@ -162,8 +162,8 @@ int http_response(FILE *stream, http_req *req)
     // CRLF
     if (req->type == FULL) {
         fprintf(stream, "HTTP/1.0 %d\r\n", req->status);
-        fprintf(stream, "Server: CS2140 v1\r\n");
-        fprintf(stream, "Date: %s GMT\r\n", timestr);
+        fprintf(stream, "Server: CS3040 v1\r\n");
+        fprintf(stream, "Date: %s\r\n", timestr);
         // TODO: Content-Length header
         fprintf(stream, "Content-Type: %s\r\n", 
             (req->mime && (req->status == OK)) ? req->mime : "text/html");
@@ -232,9 +232,13 @@ int http_process_request(http_req *req)
         //  open it and we will send it to the client
         req->resource_fd = open(path, O_RDONLY);
         if (req->resource_fd < 0) {
-            req->status = INTERNAL_ERROR;
+            if (errno == EACCES)
+                req->status = UNAUTHORIZED;
+            else
+                req->status = INTERNAL_ERROR;
+        } else {
+            get_mime_type(req->resource, req);
         }
-        get_mime_type(req->resource, req);
     }
     return 0;
 }
