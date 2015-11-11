@@ -49,6 +49,6 @@ uninstall:
 #
 combtest.o: combtest.c include/bell.h include/combinatorics.h \
                        include/lucas.h include/clist.h
-lucas.o: lucas.c include/lucas.h
-bell.o: bell.c include/bell.h
+lucas.o: lucas.c include/lucas.h include/combinatorics.h
+bell.o: bell.c include/bell.h include/combinatorics.h
 clist.o: clist.c include/clist.h include/combinatorics.h
