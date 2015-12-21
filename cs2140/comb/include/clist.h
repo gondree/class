@@ -27,7 +27,7 @@ struct cnode {
 //    toward the head of the list.
 //
 //    If the input list is unordered, the behavior is undefined.
-//    Caller is resonsible for freeing the new node inserted
+//    Caller is responsible for freeing the new node inserted
 //    into the list.
 // INPUT 
 //    type - the type of the combinatorial sequence, e.g. BELL
