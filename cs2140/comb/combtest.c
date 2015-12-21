@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <combinatorics.h>
 #include <lucas.h>
@@ -34,22 +35,22 @@ int main(int argc, char *argv[], char *env[])
     info.q = -1;
 
     printf("%s \n\t This will generate the first %d sequence numbers"
-           " in the Fibonacci and Bell sequences\n\n ", argv[0], COMBN);
+           " in the Fibonacci and Bell sequences\n\n", argv[0], COMBN);
 
     for(i = 0; i < COMBN; i++) {
         if (lucas(&info, i, &f) != 0) {
             cerror("lucas()", lucas_errno);
-        } else {
-            ordered_add(FIB, i, f, &head);
+        } else if (ordered_add(FIB, i, f, &head) != 0) {
+            fprintf(stderr, "ordered_add() : error\n");
         }
 
         if (bell(i, &b) != 0) {
             cerror("bell()", bell_errno);
-        } else {
-            ordered_add(BELL, i, b, &head);
+        } else if (ordered_add(BELL, i, b, &head) != 0) {
+            fprintf(stderr, "ordered_add() : error\n");
         }
     }
-    
+
     for(ptr = head; ptr != NULL; ptr = ptr->next) {
         printf("%s \t Seq(%d) = %ld\n",
                comb_print(ptr), ptr->pos, ptr->value);
