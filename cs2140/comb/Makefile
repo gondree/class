@@ -1,9 +1,10 @@
-CFLAGS  = -Wall -g
+CC      = gcc
+CFLAGS  = -Wall
 LDFLAGS = 
 VPATH  += src
 
 LIBS = lib/libcomb.a lib/libcomb.so
-BINS = combtest combtest-0 combtest-1 combtest-2 
+BINS = combtest combtest-0 combtest-1 combtest-2
 OBJS = lucas.o bell.o clist.o
 
 .PHONY: all clean install uninstall
@@ -47,8 +48,8 @@ uninstall:
 #
 # Dependencies
 #
-combtest.o: combtest.c include/bell.h include/combinatorics.h \
-                       include/lucas.h include/clist.h
-lucas.o: lucas.c include/lucas.h include/combinatorics.h
-bell.o: bell.c include/bell.h include/combinatorics.h
-clist.o: clist.c include/clist.h include/combinatorics.h
+combtest.o combtest.i combtest.s: combtest.c include/bell.h \
+    include/combinatorics.h include/lucas.h include/clist.h
+lucas.o lucas.i lucas.s: lucas.c include/lucas.h include/combinatorics.h
+bell.o bell.i bell.s: bell.c include/bell.h include/combinatorics.h
+clist.o clist.i clist.s: clist.c include/clist.h include/combinatorics.h
