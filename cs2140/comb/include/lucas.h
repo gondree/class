@@ -38,6 +38,7 @@ typedef struct {
 //         will be populated with the requested sequence number
 // RETURN VALUE
 //    The function returns 0 on success, or -1 on error.
+//    On error, sets lucas_errno to a value printable via strerror().
 //
 int lucas(linfo_t *gen, int n, comb_t *ans);
 

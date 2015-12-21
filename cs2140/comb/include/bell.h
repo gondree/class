@@ -21,6 +21,7 @@
 //         will be populated with B_n
 // RETURN VALUE
 //    The function returns 0 on success, or -1 on error.
+//    On error, sets lucas_errno to a value printable via strerror().
 //
 int bell(int n, comb_t *ans);
 
