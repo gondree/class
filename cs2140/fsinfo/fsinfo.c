@@ -27,7 +27,6 @@ void usage(const char* arg)
         printf("\t-%c, --%s%s\n",
             long_opts[i].val, long_opts[i].name, opts_desc[i]);
     }    
-    exit(0);
 }
 
 // prototypes
@@ -46,6 +45,7 @@ int main(int argc, char *argv[])
         switch(opt) {
             case 'h':
                 usage(argv[0]);
+                exit(0);
                 break;
             case 'v':
                 verbose = 1;
@@ -53,6 +53,7 @@ int main(int argc, char *argv[])
             default:
                 fprintf(stderr, "Invalid option.\n");
                 usage(argv[0]);
+                exit(-1);
                 break;
         }
     } // while
