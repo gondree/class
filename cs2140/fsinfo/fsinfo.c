@@ -26,7 +26,7 @@ void usage(const char* arg)
     for (i = 0; i < sizeof(long_opts) / sizeof(struct option) - 1; i++) {
         printf("\t-%c, --%s%s\n",
             long_opts[i].val, long_opts[i].name, opts_desc[i]);
-    }    
+    }
 }
 
 // prototypes
