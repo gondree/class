@@ -256,6 +256,10 @@ int get_mime_type(char *filename, http_req *req)
         req->mime = NULL;
     else if (!strncmp(ext, ".html", 5) || !strncmp(ext, ".htm", 4))
         req->mime = "text/html";
+    else if (!strncmp(ext, ".txt", 4))
+        req->mime = "text/plain";
+    else if (!strncmp(ext, ".c", 2) || !strncmp(ext, ".h", 2))
+        req->mime = "text/plain";
     else if (!strncmp(ext, ".jpg", 4) || !strncmp(ext, ".jpeg", 5))
         req->mime = "image/jpeg";
     else if (!strncmp(ext, ".gif", 4))
@@ -264,7 +268,7 @@ int get_mime_type(char *filename, http_req *req)
         req->mime = "image/png";
     else if (!strncmp(ext, ".css", 4))
         req->mime = "text/css";
-    else if (!strncmp(ext, ".au", 4))
+    else if (!strncmp(ext, ".au", 3))
         req->mime = "audio/basic";
     else if (!strncmp(ext, ".wav", 4))
         req->mime = "audio/wav";
