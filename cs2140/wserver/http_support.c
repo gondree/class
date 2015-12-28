@@ -278,6 +278,8 @@ int get_mime_type(char *filename, http_req *req)
         req->mime = "video/mpeg";
     else if (!strncmp(ext, ".mp3", 4))
         req->mime = "audio/mpeg";
+    else
+        req->mime = NULL;
     return 0;
 }
 
