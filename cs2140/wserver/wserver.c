@@ -58,8 +58,8 @@ void handle_connection(int fd)
     http_process_request(&req);
     http_response(tx, &req);
 
-	shutdown(fileno(rx), SHUT_RDWR);
-	fclose(rx);
+    shutdown(fileno(rx), SHUT_RDWR);
+    fclose(rx);
     fclose(tx);
     free_req(&req);
     return;
